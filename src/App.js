@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Resources from './components/Resources';
 import BulletinBoard from './components/BulletinBoard';
+import AddSeed from './components/AddSeed';
 import './App.css';
 
 
@@ -62,6 +63,12 @@ class App extends Component {
           <Match exactly pattern="/resources" component={Resources}  />
           <Match pattern="/seeds/bulletin-board" component={() =>
             <BulletinBoard
+              seedsObj={this.state.seeds}
+            />
+            }
+          />
+          <Match pattern="/seeds/add-seed" component={() =>
+            <AddSeed
               seedsObj={this.state.seeds}
               onAddSeed={this.addSeed}
               onGetSeed={this.getSeeds}
