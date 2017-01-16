@@ -6,8 +6,8 @@ const Header = () => {
     <div className="App-header">
       {/*logohere - <img src={logo} className="App-logo" alt="logo" /> */}
       <h1>Backstory Seeds</h1>
-      <ul>
-        <li className="link">
+      <ul className="header-links-list">
+        <li>
           <Link
             to="/"
             activeOnlyWhenExact
@@ -16,16 +16,16 @@ const Header = () => {
             Home
           </Link>
         </li>
-        <li className="link">
+        <li>
           <Link
-            to="/seeds"
+            to="/seeds/bulletin-board"
             activeOnlyWhenExact
             activeClassName="active"
           >
             Seeds
           </Link>
         </li>
-        <li className="link">
+        <li>
           <Link
             to="/resources"
             activeOnlyWhenExact
