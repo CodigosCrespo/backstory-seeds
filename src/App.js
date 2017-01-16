@@ -17,6 +17,7 @@ class App extends Component {
     }
     this.getSeeds = this.getSeeds.bind(this);
     this.addSeed = this.addSeed.bind(this);
+    this.deleteSeed = this.deleteSeed.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +54,17 @@ class App extends Component {
     });
   }
 
+  deleteSeed(key) {
+    axios({
+      url: `bulletin-board/${key}.json`,
+      baseURL: 'https://backstory-seeds.firebaseio.com/',
+      method: "DELETE",
+    }).then(() => {
+      this.getSeeds();
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
 
   render() {
     return (
@@ -64,6 +76,7 @@ class App extends Component {
           <Match pattern="/seeds/bulletin-board" component={() =>
             <BulletinBoard
               seedsObj={this.state.seeds}
+              onDeleteSeed={this.deleteSeed}
             />
             }
           />
@@ -71,7 +84,6 @@ class App extends Component {
             <AddSeed
               seedsObj={this.state.seeds}
               onAddSeed={this.addSeed}
-              onGetSeed={this.getSeeds}
             />
             }
           />

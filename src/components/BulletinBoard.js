@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import SeedsMenu from './SeedsMenu';
 
 class BulletinBoard extends Component {
@@ -10,7 +9,10 @@ class BulletinBoard extends Component {
       editing: false,
     }
     this.populateBoard = this.populateBoard.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+
   }
+
   populateBoard() {
     let { seedsObj } = this.props;
     return (
@@ -22,15 +24,25 @@ class BulletinBoard extends Component {
             <p>Personality type: {seedsObj[key].personality}</p>
             <p>Background: {seedsObj[key].background}</p>
             <p>
-              <button>Comment</button>
-              <button>Edit</button>
-              <button>Delete</button>
+              <button onClick={() => alert('Comment Button Clicked')}>
+                Comment
+              </button>
+              <button onClick={() => alert('Edit Button Clicked')}>
+                Edit
+              </button>
+              <button onClick={() => this.handleDelete(key)}>
+                Delete
+              </button>
             </p>
           </li>
           )
         }
       </ul>
     )
+  }
+
+  handleDelete(key) {
+    this.props.onDeleteSeed(key);
   }
 
   render() {
