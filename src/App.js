@@ -66,6 +66,24 @@ class App extends Component {
     });
   }
 
+  editSeed(key, name, personality, background) {
+    let editedSeed = {
+       name: name,
+       personality: personality,
+       background: background
+      };
+    axios({
+      url: `bulletin-board/${key}.json`,
+      baseURL: 'https://backstory-seeds.firebaseio.com/',
+      method: "PATCH",
+      data: editedSeed,
+    }).then(() => {
+      this.getSeeds();
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -73,12 +91,13 @@ class App extends Component {
           <Header />
           <Match exactly pattern="/" component={Home} />
           <Match exactly pattern="/resources" component={Resources}  />
-          <Match pattern="/seeds/bulletin-board" component={() =>
-            <BulletinBoard
-              seedsObj={this.state.seeds}
-              onDeleteSeed={this.deleteSeed}
-            />
-            }
+          <Match pattern="/seeds/bulletin-board"
+            component={() =>
+              <BulletinBoard
+                seedsObj={this.state.seeds}
+                onDeleteSeed={this.deleteSeed}
+                onEditSeed={this.editSeed}
+              />}
           />
           <Match pattern="/seeds/add-seed" component={() =>
             <AddSeed

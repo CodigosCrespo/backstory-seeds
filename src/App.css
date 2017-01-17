@@ -43,7 +43,7 @@ h2 {
   margin-bottom: 0;
 }
 
-ul {
+.seed-list {
   margin-top: 0;
   display: flex;
   flex-direction: column-reverse;
