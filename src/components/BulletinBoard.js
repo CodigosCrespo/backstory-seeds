@@ -8,21 +8,92 @@ class BulletinBoard extends Component {
       commenting: false,
       editing: false,
       currentKey: '',
-      currentBackgroundPlaceholder: '',
-      currentNamePlaceholder: '',
-      currentPersonalityPlaceholder: '',
+      currentBackground: '',
+      currentName: '',
+      currentPersonality: '',
     }
     this.populateBoard = this.populateBoard.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleNameEdit = this.handleNameEdit.bind(this);
+    this.handleBackgroundEdit = this.handleBackgroundEdit.bind(this);
+    this.handlePersonalityEdit = this.handlePersonalityEdit.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+  }
+
+  handleNameEdit(event) {
+    this.setState({ currentName: event.target.value })
+  }
+
+  handleBackgroundEdit(event) {
+    this.setState({ currentBackground: event.target.value })
+  }
+
+  handlePersonalityEdit(event) {
+    this.setState({ currentPersonality: event.target.value })
   }
 
   populateBoard() {
     let { seedsObj } = this.props;
+    let { editing, currentKey } = this.state;
     let content;
-    if (!this.state.editing) {
+    if (editing === true) {
       content = (
-        <div className="seed-list">
+        <form
+          className="edit-seed"
+          onSubmit={this.handleSave}
+        >
+          <div key={currentKey} value={currentKey}>
+            <h3>Edit Seed:</h3>
+            <p>Name:</p>
+            <input
+              type="text"
+              defaultValue={this.state.currentName}
+              onChange={this.handleNameEdit}
+              >
+            </input>
+            <p>Personality type:</p>
+            <select
+              type="text"
+              defaultValue={seedsObj[currentKey].personality}
+              onChange={this.handlePersonalityEdit}
+              >
+              <option>Choose type</option>
+              <option value="INTJ">Analyst: Architect</option>
+              <option value="INTP">Analyst: Logician</option>
+              <option value="ENTJ">Analyst: Commander</option>
+              <option value="ENTP">Analyst: Debater</option>
+              <option value="INFJ">Diplomats: Advocate</option>
+              <option value="INFP">Diplomats: Mediator</option>
+              <option value="ENFJ">Diplomats: Protagonist</option>
+              <option value="ENFP">Diplomats: Campaigner</option>
+              <option value="ISTJ">Sentinals: Logistician</option>
+              <option value="ISFJ">Sentinals: Defender</option>
+              <option value="ESTJ">Sentinals: Executive</option>
+              <option value="ESFJ">Sentinals: Consul</option>
+              <option value="ISTP">Explorers: Virtuoso</option>
+              <option value="ISFP">Explorers: Adventurer</option>
+              <option value="ESTP">Explorers: Entrepreneur</option>
+              <option value="ESFP">Explorers: Entertainer</option>
+            </select>
+            <p>Background:</p>
+            <textarea
+            rows="10"
+            cols="50"
+            defaultValue={seedsObj[currentKey].background}
+            onChange={this.handleBackgroundEdit}></textarea>
+            <p>
+              <input type="submit" value="Save" />
+              <button onClick={() => this.handleCancel() }>
+                Cancel
+              </button>
+            </p>
+          </div>
+        </form>
+      )
+    } else {
+        content = (
+          <div className="seed-list">
           {Object.keys(seedsObj).map((key) =>
             <div key={key} value={key}>
               <h3>Character Seed:</h3>
@@ -36,33 +107,14 @@ class BulletinBoard extends Component {
                 <button onClick={ () => this.handleDelete(key) }>
                   Delete
                 </button>
-                <button onClick={() => this.handleComment(key) }>
-                  Comment
-                </button>
+                {/*<button onClick={() => this.handleComment(key) }>
+                                  Comment
+                                </button>*/}
               </p>
             </div>
             )
           }
         </div>
-      )
-    } else {
-        content = (
-          <div className="seed-list">
-            {Object.keys(seedsObj).map((key) =>
-              <div key={key} value={key}>
-                <h3>Edit Seed:</h3>
-                <p>Name: {seedsObj[key].name}</p>
-                <p>Personality type: {seedsObj[key].personality}</p>
-                <p>Background: {seedsObj[key].background}</p>
-                <p>
-                  <button onClick={() => this.handleSave(key) }>
-                    Save
-                  </button>
-                </p>
-              </div>
-              )
-            }
-          </div>
         )
       }
 
@@ -74,38 +126,43 @@ class BulletinBoard extends Component {
   }
 
   handleEdit(key) {
-    console.log('editing:');
-    console.log(key);
-    console.log(this.props.seedsObj[key]);
-    this.setState({ editing: true, });
-    this.setState({ currentKey: key });
-    this.setState({ currentBackgroundPlaceholder: this.props.seedsObj[key].background });
-    this.setState({ currentNamePlaceholder: this.props.seedsObj[key].name });
-    this.setState({ currentPersonalityPlaceholder: this.props.seedsObj[key].personality });
-    // replace p tags with input fields for the specific key.. somehow.. r.i.p.
-
-    // send all the below
-    // this.props.onEditSeed(key, name, personality, background);
+    this.setState({
+      editing: true,
+      currentKey: key,
+      currentBackground: this.props.seedsObj[key].background,
+      currentName: this.props.seedsObj[key].name,
+      currentPersonality: this.props.seedsObj[key].personality,
+    });
   }
 
-  handleSave(key) {
-    console.log('saving:');
-    console.log(key);
-    this.setState({ editing: false, });
-    this.setState({ currentKey: '', });
-    this.setState({ currentBackgroundPlaceholder: '', });
-    this.setState({ currentNamePlaceholder: '', });
-    this.setState({ currentPersonalityPlaceholder: '', });
-    // take the key and setState somewhere
-    // send all the below
-    // this.props.onEditSeed(key, name, personality, background);
+  handleSave(event) {
+    event.preventDefault();
+    let { currentKey, currentName, currentPersonality, currentBackground } = this.state;
+    this.props.onEditSeed(currentKey, currentName, currentPersonality, currentBackground);
+    this.setState({
+      editing: false,
+      currentKey: '',
+      currentBackground: '',
+      currentName: '',
+      currentPersonality: '',
+    });
   }
 
-  handleComment(key) {
+  handleCancel() {
+    this.setState({
+      editing: false,
+      currentKey: '',
+      currentBackground: '',
+      currentName: '',
+      currentPersonality: '',
+    });
+  }
+
+/*  handleComment(key) {
     console.log('commenting on:');
     console.log(key);
     // add a post within the key's data with a comment history trail
-  }
+  }*/
 
   render() {
 

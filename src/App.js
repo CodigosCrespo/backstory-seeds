@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Match, Miss } from 'react-router';
+import { BrowserRouter, Match } from 'react-router';
 import axios from 'axios';
 import Header from './components/Header';
 import Home from './components/Home';
@@ -18,6 +18,7 @@ class App extends Component {
     this.getSeeds = this.getSeeds.bind(this);
     this.addSeed = this.addSeed.bind(this);
     this.deleteSeed = this.deleteSeed.bind(this);
+    this.editSeed = this.editSeed.bind(this);
   }
 
   componentDidMount() {
