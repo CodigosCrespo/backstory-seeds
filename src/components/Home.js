@@ -12,6 +12,8 @@ const Home = () => (
       <p>
         With Backstory Seeds you can constantly update the individuals in your world and keep track of their dynamic growth throughout your story. As you and your plot grows, so shall the development of their personalities (so their actions are narratively sound). No deus ex machinas here!
       </p>
+      <img src="https://s28.postimg.org/toa4vluq5/Jerel_GIF.gif" className="Home-logo" alt="logo" />
+
     </div>
   )
 
