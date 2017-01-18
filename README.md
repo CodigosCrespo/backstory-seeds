@@ -1,10 +1,6 @@
 # Backstory Seeds
 A simple React.js CRUD app that allows users to collaborate and share seeds of ideas for developed character backstories.
 
-##### Control a light cycle and try to make your opponent crash into a wall before you do. Use the arrow keys to move and press enter for turbo.
-
-![Initial Wireframe](public/wireframe-1.jpg)
-
 ### Technologies Used
 - React.js/JSX
 - CSS/Flexbox
@@ -46,3 +42,8 @@ Complications/Challenges/Handicaps:
 Future Improvements: 
 - User logins with personalized lists
 - Storyboarding and character development timeline
+
+##### Initial wireframing in composition notebook!
+
+![Initial Wireframe](public/wireframe-1.jpg)
+![Initial Wireframe 2](public/wireframe-2.jpg)
