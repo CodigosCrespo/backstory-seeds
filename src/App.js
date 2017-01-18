@@ -100,10 +100,7 @@ class App extends Component {
               />}
           />
           <Match pattern="/seeds/add-seed" component={() =>
-            <AddSeed
-              seedsObj={this.state.seeds}
-              onAddSeed={this.addSeed}
-            />
+            <AddSeed onAddSeed={this.addSeed} />
             }
           />
         </div>

@@ -33,7 +33,6 @@ class BulletinBoard extends Component {
     this.setState({ currentPersonality: event.target.value })
   }
 
-
   handleDelete(key) {
     this.props.onDeleteSeed(key);
   }
@@ -71,12 +70,6 @@ class BulletinBoard extends Component {
       currentPersonality: '',
     });
   }
-
-/*  handleComment(key) {
-    console.log('commenting on:');
-    console.log(key);
-    // add a post within the key's data with a comment history trail
-  }*/
 
   populateBoard() {
     let { seedsObj } = this.props;
@@ -151,9 +144,6 @@ class BulletinBoard extends Component {
                 <button onClick={ () => this.handleDelete(key) }>
                   Delete
                 </button>
-                {/*<button onClick={() => this.handleComment(key) }>
-                                  Comment
-                                </button>*/}
               </p>
             </div>
             )
