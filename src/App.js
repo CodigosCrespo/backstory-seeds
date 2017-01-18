@@ -8,7 +8,6 @@ import BulletinBoard from './components/BulletinBoard';
 import AddSeed from './components/AddSeed';
 import './App.css';
 
-
 class App extends Component {
   constructor() {
     super();
@@ -41,7 +40,7 @@ class App extends Component {
     let newSeed = {
        name: name,
        personality: personality,
-       background: background
+       background: background,
       };
     axios({
       url: 'bulletin-board/.json',
@@ -91,7 +90,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <Match exactly pattern="/" component={Home} />
-          <Match exactly pattern="/resources" component={Resources}  />
+          <Match exactly pattern="/resources" component={Resources} />
           <Match pattern="/seeds/bulletin-board"
             component={() =>
               <BulletinBoard

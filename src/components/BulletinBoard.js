@@ -134,7 +134,6 @@ class BulletinBoard extends Component {
           </div>
         </div>
         </form>
-
       )
     } else {
         content = (
@@ -166,7 +165,6 @@ class BulletinBoard extends Component {
   }
 
   render() {
-
     return(
        <div>
         <div className="bulletin-board">
