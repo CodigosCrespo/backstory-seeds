@@ -8,7 +8,6 @@ html {
   height: 100px;
   padding: 20px;
   color: #4A494E;
-  text-align: center;
   list-style: none;
 }
 
@@ -23,7 +22,7 @@ html {
 }
 
 .header-links-list {
-  width: 170px;
+  width: 155px;
   list-style: none;
   display: flex;
   flex-direction: row;
@@ -33,6 +32,20 @@ html {
 .header-links-list li {
   margin: 5px;
   font-size: 1.3em;
+}
+h1 {
+  padding: 0;
+}
+
+.App-logo {
+  float: right;
+  height: 100px;
+}
+
+.static-page {
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
 }
 
 .static-page, .add-seed, .bulletin-board  {
@@ -44,9 +57,30 @@ h2 {
 }
 
 .seed-list {
-  margin-top: 0;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  height: 500px;
+  width: 70%;
+  overflow: auto;
+}
+
+.add-form, .edit-seed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-form label, .edit-seed label {
+  margin: 8px;
+  padding-top: 5px;
+  font-weight: 700;
+}
+
+.add-seed {
+  margin: 0 auto;
+  height: 500px;
+  width: 70%;
 }
 
 h2, .seeds-menu {

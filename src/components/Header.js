@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const Header = () => {
   return (
     <div className="App-header">
-      {/*logohere - <img src={logo} className="App-logo" alt="logo" /> */}
+      <img src="https://s28.postimg.org/toa4vluq5/Jerel_GIF.gif" className="App-logo" alt="logo" />
       <h1>Backstory Seeds</h1>
       <ul className="header-links-list">
         <li>
@@ -35,6 +35,8 @@ const Header = () => {
           </Link>
         </li>
       </ul>
+
+
     </div>
   )
 }

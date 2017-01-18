@@ -42,17 +42,18 @@ class AddSeed extends Component {
   render() {
 
     return(
-       <div>
+       <div className="add-seed">
         <form onSubmit={this.handleSubmit}>
-          <div className="add-seed">
-              <h2>New character form:</h2>
+          <div className="add-form">
+              <h2>Add a Seed:</h2>
               <SeedsMenu />
-              <label htmlFor="name">Name: </label>
+
+              <label htmlFor="name">Character Name: </label>
               <input
                 type="text"
                 value={this.state.nameValue}
                 onChange={this.handleNameChange} />
-              <p>Personality: {this.state.personalityValue}</p>
+              <label>Personality: {this.state.personalityValue}</label>
                 <select
                   value={this.state.personalityValue}
                   onChange={this.handlePersonalityChange}
@@ -75,7 +76,7 @@ class AddSeed extends Component {
                   <option value="ESTP">Explorers: Entrepreneur</option>
                   <option value="ESFP">Explorers: Entertainer</option>
                 </select>
-              <p>Background:</p>
+              <label>Background:</label>
               <textarea
                 placeholder="Background history of your developing character.."
                 rows="10"
